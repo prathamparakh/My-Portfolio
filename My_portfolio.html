@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pratham's Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+            background-image: radial-gradient(circle, #e1e1e3 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .container {
+            position: relative;
+            width: 95vw;
+            height: 90vh;
+            max-width: 1400px;
+        }
+
+        .welcome-screen, .dashboard {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: all 0.5s ease;
+        }
+
+        .welcome-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .device {
+            background: #4a5bbc;
+            padding: 30px;
+            border-radius: 15px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .screen {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 15px 0;
+            color: #333;
+        }
+
+        .power-button {
+            background: #ffd700;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 20px auto;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,215,0,0.3);
+        }
+
+        .power-button:hover {
+            transform: scale(1.1);
+        }
+
+        .dashboard {
+            opacity: 0;
+            pointer-events: none;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .profile-section {
+            background: linear-gradient(145deg, #4a5bbc, #3949ab);
+            padding: 30px;
+            border-radius: 20px;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(57, 73, 171, 0.1);
+        }
+
+        .avatar {
+            background: #ffffff;
+            height: 250px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .section-button {
+            background: rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            margin: 10px 0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            color: white;
+            text-align: left;
+            font-size: 1em;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .section-button:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .skills-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: linear-gradient(145deg, #5a6bcc, #4a5bbc);
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .portfolio-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            height: 100%;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .project {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            padding: 20px 0;
+        }
+
+        .project.active {
+            display: block;
+        }
+
+        .project-thumbnail {
+            height: 200px;
+            background: #f5f5f7;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .project-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-title {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .project-description {
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #666;
+        }
+
+        .project-tech {
+            margin: 15px 0;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background: #f0f0f5;
+            padding: 6px 12px;
+            margin: 0 5px 5px 0;
+            border-radius: 15px;
+            font-size: 0.9em;
+            color: #4a5bbc;
+        }
+
+        .project-link {
+            color: #4a5bbc;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        .navigation-buttons {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-button {
+            background: #4a5bbc;
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(74, 91, 188, 0.2);
+        }
+
+        .nav-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(74, 91, 188, 0.3);
+        }
+
+        .social-links {
+            position: absolute;
+            bottom: 30px;
+            left: 40px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-button {
+            background: #f5f5f7;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #4a5bbc;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .social-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .click-text {
+            color: white;
+            animation: blink 1s infinite;
+            margin-top: 10px;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-screen">
+            <div class="device">
+                <div class="screen">
+                    <h2>I'm Pratham</h2>
+                    <p>I'm a Data Science student. Welcome to my personal dashboard.</p>
+                </div>
+                <div class="power-button" id="powerButton"></div>
+                <span class="click-text">CLICK</span>
+            </div>
+        </div>
+        <div class="dashboard">
+            <div class="profile-section">
+                <div class="avatar">
+                    <img src="/api/placeholder/250/250" alt="Pratham's Avatar" />
+                </div>
+                
+                <button class="section-button" id="resumeBtn">RESUME</button>
+                <button class="section-button" id="certificatesBtn">CERTIFICATES</button>
+                <button class="section-button" id="experienceBtn">EXPERIENCE</button>
+                
+                <div class="skills-section">
+                    <h3 style="color: white; margin-bottom: 15px;">Skills</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Data Analysis</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Problem Solving</span>
+                    </div>
+                </div>
+            </div>
+            <div class="content-section">
+                <div class="portfolio-section">
+                    <h2 class="section-title">My Projects</h2>
+                    <div class="project-container">
+                        <div class="project active">
+                            <div class="project-thumbnail">
+                                <img src="/api/placeholder/800/400" alt="Airline Network Analysis Preview" />
+                            </div>
+                            <h3 class="project-title">Airline Network Analysis</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">NetworkX</span>
+                                <span class="tech-tag">Data Analysis</span>
+                            </div>
+                            <p class="project-description">Max flow analysis on sample airline network data using Ford-Fulkerson algorithm</p>
+                            <a href="https://github.com/prathamparakh/airline_network_ford_fulkerson" class="project-link">View Project →</a>
+                        </div>
+                        <div class="project">
+                            <div class="project-thumbnail">
+                                <img src="/api/placeholder/800/400" alt="Paper Trading Platform Preview" />
+                            </div>
+                            <h3 class="project-title">Paper Trading Platform</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Flask</span>
+                                <span class="tech-tag">SQL</span>
+                            </div>
+                            <p class="project-description">A comprehensive platform for paper trading and market analysis</p>
+                            <a href="https://github.com/prathamparakh/paper_trading_platform" class="project-link">View Project →</a>
+                        </div>
+                        <div class="project">
+                            <div class="project-thumbnail">
+                                <img src="/api/placeholder/800/400" alt="CVP Analysis Preview" />
+                            </div>
+                            <h3 class="project-title">CVP Analysis</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Pandas</span>
+                                <span class="tech-tag">Data Visualization</span>
+                            </div>
+                            <p class="project-description">Cost Volume Profit Analysis tool for business decision making</p>
+                            <a href="https://github.com/prathamparakh/cvp_analysis" class="project-link">View Project →</a>
+                        </div>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button class="nav-button" id="prevProject">←</button>
+                        <button class="nav-button" id="nextProject">→</button>
+                    </div>
+                    <div class="social-links">
+                        <div class="social-button" id="linkedin">in</div>
+                        <div class="social-button" id="github">GH</div>
+                        <div class="social-button" id="email">@</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const powerButton = document.getElementById('powerButton');
+        const welcomeScreen = document.querySelector('.welcome-screen');
+        const dashboard = document.querySelector('.dashboard');
+        const projects = document.querySelectorAll('.project');
+        let currentProject = 0;
+
+        powerButton.addEventListener('click', () => {
+            welcomeScreen.style.opacity = '0';
+            welcomeScreen.style.pointerEvents = 'none';
+            dashboard.style.opacity = '1';
+            dashboard.style.pointerEvents = 'all';
+        });
+
+        document.getElementById('linkedin').addEventListener('click', () => {
+            window.open('https://www.linkedin.com/in/pratham-parakh-53a06130a/', '_blank');
+        });
+
+        document.getElementById('github').addEventListener('click', () => {
+            window.open('https://github.com/prathamparakh', '_blank');
+        });
+
+        document.getElementById('email').addEventListener('click', () => {
+            window.location.href = 'mailto:prathamparakh918@gmail.com';
+        });
+
+        function showProject(index) {
+            projects.forEach(project => project.classList.remove('active'));
+            projects[index].classList.add('active');
+        }
+
+        document.getElementById('nextProject').addEventListener('click', () => {
+            currentProject = (currentProject + 1) % projects.length;
+            showProject(currentProject);
+        });
+
+        document.getElementById('prevProject').addEventListener('click', () => {
+            currentProject = (currentProject - 1 + projects.length) % projects.length;
+            showProject(currentProject);
+        });
+
+        document.getElementById('resumeBtn').addEventListener('click', () => {
+            window.open('dummy-resume.pdf', '_blank');
+        });
+    </script>
+</body>
+</html>
