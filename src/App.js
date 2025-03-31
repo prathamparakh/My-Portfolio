@@ -9,7 +9,7 @@ const Portfolio = () => {
     location: "Mumbai, India",
     phone: "+91 9082937049",
     email: "prathamparakh918@gmail.com",
-    linkedin: "pratham-parakh-53a06130a",
+    linkedin: "pratham-parakh",
     github: "prathamparakh"
   };
   

@@ -1,0 +1,80 @@
+\documentclass[11pt,letterpaper,sans]{moderncv}
+
+% moderncv themes
+\moderncvstyle{classic}
+\moderncvcolor{black}
+
+% adjust the page margins - more compact layout
+\usepackage[scale=0.80]{geometry}
+\setlength{\hintscolumnwidth}{2.2cm}
+
+% reduce spacing further
+\renewcommand{\baselinestretch}{0.92}
+\setlength{\parskip}{0pt}
+
+% personal data
+\name{Pratham}{Parakh}
+\phone[mobile]{‪+91 9082937049‬}
+\email{prathamparakh918@gmail.com}
+\social[linkedin]{pratham-parakh-53a06130a}
+\social[github]{prathamparakh}
+\address{Mumbai, India}{}{}
+
+\begin{document}
+
+\makecvtitle
+\vspace{-25pt}
+\section{Education}
+\cventry{2023 -- 2026}{Bachelor of Technology in CS Engineering (Data Science)}{Mukesh Patel School of Technology Management \& Engineering, NMIMS}{}{GPA: 3.65/4.0}{}
+\cventry{2026 -- 2028}{BS in Cybersecurity \& MS in Business Analytics}{Virginia Tech}{}{}{International partnership program}
+
+\section{Professional Experience}
+\cventry{2025 -- Present}{Co-founder}{NUMERO ORACLE}{Mumbai, India}{}{
+\begin{itemize}
+\item Implemented data-driven strategies resulting in 40\% increase in business performance
+\item Developed targeted social media campaigns enhancing brand outreach by 65\%
+\item Established 15+ strategic partnerships with key industry stakeholders
+\end{itemize}}
+
+\cventry{2021 -- 2022}{Assistant Manager}{AAYUSH COTTFABS PVT LTD}{Mumbai, India}{}{
+\begin{itemize}
+\item Managed operations team of 12, ensuring 95\% on-time delivery and process efficiency
+\item Optimized supply chain processes, reducing operational costs by 18\%
+\item Implemented digital inventory tracking system improving accuracy by 32\%
+\end{itemize}}
+
+\section{Technical Projects}
+\cventry{2025}{NEO NET ENTERPRISE}{}{}{}{
+\begin{itemize}
+\item Engineered AI-powered business tool set using Python, React and AWS cloud services
+\item Implemented market prediction algorithms with 89\% accuracy for financial forecasting
+\item Created automated workflows reducing administrative overhead by 65\% for startups
+\end{itemize}}
+
+\cventry{2024}{PAPER TRADING PLATFORM}{}{}{}{
+\begin{itemize}
+\item Architected full-stack trading simulation using C++, REST APIs, and SQL databases
+\item Integrated real-time market data processing with 99.7\% uptime reliability
+\end{itemize}}
+
+\section{Leadership Experience}
+\cventry{June 2024 -- July 2024}{Community Service Volunteer}{Afroz Shah Foundation}{Mumbai, India}{}{
+\begin{itemize}
+\item Led beach cleanups \& waste segregation drives, removing plastic and promoting recycling
+\item Assisted in mangrove restoration \& plastic-free initiatives, educating communities on sustainability
+\end{itemize}}
+\cventry{2023 -- Present}{Head of Sports Committee}{MPSTME}{Mumbai, India}{}{
+\begin{itemize}
+\item Led 35-member team organizing 12+ annual events for 3,000+ participants
+\item Secured sponsorships of ₹500,000, representing 40\% year-over-year growth
+\end{itemize}}
+
+\section{Technical Skills}
+\cvitem{Languages}{Python, C++, C, Java, SQL, HTML/CSS, JavaScript}
+\cvitem{Technologies}{AWS, ReactJS, MySQL, Tableau, Excel, MongoDB}
+\cvitem{Additional}{Data Analysis, Project Management, Fluent in English, Hindi, Tamil, French}
+
+\section{Certifications}
+\cvitem{2023/2022}{AWS Certified Cloud Practitioner, Google Data Analytics Certificate}
+
+\end{document}
