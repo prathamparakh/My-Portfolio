@@ -11,7 +11,7 @@ const Portfolio = () => {
     email: "prathamparakh918@gmail.com",
     linkedin: "pratham-parakh",
     github: "prathamparakh",
-    resumeFile: "/RESUME.pdf" 
+    resumeFile: "public/Resume__Pratham_datascience_student.pdf.pdf" 
   };
   
   const education = [
