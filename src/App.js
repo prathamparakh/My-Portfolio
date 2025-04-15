@@ -176,7 +176,7 @@ const Portfolio = () => {
             <div className="md:w-1/2 mb-8 md:mb-0">
               <div className="bg-gray-300 h-64 w-64 mx-auto rounded-full overflow-hidden">
                 {/* Placeholder for profile image */}
-                <img src="/assets/image/profile.jpeg" alt="Profile" className="h-full w-full object-cover" />
+                <img src="/assets/image/photo.jpeg" alt="Profile" className="h-full w-full object-cover" />
               </div>
             </div>
             <div className="md:w-1/2">
