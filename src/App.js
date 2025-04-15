@@ -76,12 +76,12 @@ const Portfolio = () => {
   
   const certifications = [
     {
-      name: "AWS Certified Cloud Practitioner",
-      year: "2023"
+      name: "Data Essentials by Cisco Network Academy",
+      year: "2025"
     },
     {
-      name: "Google Data Analytics Certificate",
-      year: "2022"
+      name: "Responsive Web Design",
+      year: "2024"
     }
   ];
   
